@@ -29,6 +29,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Plan zajęć</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="regulations.php">Regulamin</a>
+          </li>
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
