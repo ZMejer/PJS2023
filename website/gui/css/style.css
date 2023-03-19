@@ -2,10 +2,17 @@
     color: #5CB85C !important;
     border-bottom: 2px solid #5CB85C;
 }
+
 .navbar-brand {
     height: 3em;
     align-items: center;
-  }
-  .footer .text-muted {
-    text-align: right;
-  }
+}
+
+.navbar {
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+input[type=checkbox] {
+    accent-color: #198754;
+}

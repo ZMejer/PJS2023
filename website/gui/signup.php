@@ -24,9 +24,6 @@
             <a class="nav-link" href="index.php">Strona główna</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.php">Logowanie</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link active" href="signup.php">Rejestracja</a>
           </li>
           <li class="nav-item">
@@ -35,12 +32,49 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <button type="button" class="btn btn-outline-light">Zaloguj się</button>
+            <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">Zaloguj
+              się</button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Logowanie</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="inputEmail">Login:</label>
+              <input type="email" class="form-control" id="inputEmail" placeholder="Wpisz login">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword">Hasło:</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="Wpisz hasło">
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="rememberMe">
+              <label class="form-check-label" for="rememberMe">Zapamiętaj mnie</label>
+            </div>
+            <div class="form-group">
+              Nie posiadasz konta? <a href="signup.php">Zarejestruj się.</a>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Anuluj</button>
+          <button type="button" class="btn btn-success">Zaloguj się</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <footer class="footer fixed-bottom p-3 bg-dark">
     <div class="container">
       <span class="text-muted pull-right">Asystent zapisów &copy; 2023</span>
