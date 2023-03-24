@@ -27,7 +27,7 @@
             <a class="nav-link active" href="signup.php">Rejestracja</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Plan zajęć</a>
+            <a class="nav-link" href="schedule.php">Plan zajęć</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="regulations.php">Regulamin</a>
@@ -105,7 +105,8 @@
           </div>
           <div class="form-check mb-3">
             <input type="checkbox" class="form-check-input" id="terms" required>
-            <label class="form-check-label" for="terms">Zgadzam się z <a href="regulations.php">warunkami użytkowania</a></label>
+            <label class="form-check-label" for="terms">Zgadzam się z <a href="regulations.php">warunkami
+                użytkowania</a></label>
           </div>
           <button type="submit" class="btn btn-success">Zarejestruj się</button>
         </form>

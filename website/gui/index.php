@@ -27,7 +27,7 @@
             <a class="nav-link" href="signup.php">Rejestracja</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Plan zajęć</a>
+            <a class="nav-link" href="schedule.php">Plan zajęć</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="regulations.php">Regulamin</a>
