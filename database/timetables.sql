@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 17 Mar 2023, 21:29
+-- Czas generowania: 04 Kwi 2023, 22:11
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -43,9 +43,25 @@ CREATE TABLE `admins` (
 --
 
 CREATE TABLE `faculties` (
-  `faculty_id` int(8) NOT NULL,
+  `id` int(8) NOT NULL,
   `name` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Zrzut danych tabeli `faculties`
+--
+
+INSERT INTO `faculties` (`id`, `name`) VALUES
+(0, 'Wydział Chemii'),
+(1, 'Wydział Biotechnologii'),
+(2, 'Wydział Filologiczny'),
+(3, 'Wydział Fizyki i Astronomii'),
+(4, 'Wydział Matematyki i Informatyki'),
+(5, 'Wydział Nauk Biologicznych'),
+(6, 'Wydział Nauk Historycznych i Pedagogicznych'),
+(7, 'Wydział Nauk o Ziemi i Kształtowania Środowiska'),
+(8, 'Wydział Nauk Społecznych'),
+(9, 'Wydział Prawa, Administracji i Ekonomii');
 
 -- --------------------------------------------------------
 
@@ -56,8 +72,33 @@ CREATE TABLE `faculties` (
 CREATE TABLE `fields_of_study` (
   `id` int(8) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `faculty` varchar(64) NOT NULL
+  `faculty_id` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Zrzut danych tabeli `fields_of_study`
+--
+
+INSERT INTO `fields_of_study` (`id`, `name`, `faculty_id`) VALUES
+(1, 'Biotechnologia', 1),
+(2, 'Chemia', 0),
+(3, 'Chemia medyczna', 0),
+(4, 'Filologia polska', 2),
+(5, 'Filologia hiszpańska', 2),
+(6, 'Filologia francuska', 2),
+(7, 'Fizyka', 3),
+(8, 'Astronomia', 3),
+(9, 'Informatyka stosowana i systemy pomiarowe', 3),
+(10, 'Informatyka', 4),
+(11, 'Matematyka', 4),
+(12, 'Biologia', 5),
+(13, 'Biologia człowieka', 5),
+(14, 'Genetyka i biologia eksperymentalna', 5),
+(15, 'Filozofia', 8),
+(16, 'Socjologia', 8),
+(17, 'Kryminologia', 9),
+(18, 'Administracja', 9),
+(19, 'Ekonomia', 9);
 
 -- --------------------------------------------------------
 
@@ -91,13 +132,14 @@ ALTER TABLE `admins`
 -- Indeksy dla tabeli `faculties`
 --
 ALTER TABLE `faculties`
-  ADD PRIMARY KEY (`faculty_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksy dla tabeli `fields_of_study`
 --
 ALTER TABLE `fields_of_study`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `faculty` (`faculty_id`);
 
 --
 -- Indeksy dla tabeli `users`
@@ -119,13 +161,23 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT dla tabeli `fields_of_study`
 --
 ALTER TABLE `fields_of_study`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- Ograniczenia dla zrzutów tabel
+--
+
+--
+-- Ograniczenia dla tabeli `fields_of_study`
+--
+ALTER TABLE `fields_of_study`
+  ADD CONSTRAINT `fields_of_study_ibfk_1` FOREIGN KEY (`faculty_id`) REFERENCES `faculties` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
