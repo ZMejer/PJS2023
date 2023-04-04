@@ -9,6 +9,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
 </head>
+<?php
+include '../php_functions/signup_function.php';
+if(!empty($_POST['surname']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['confirmPassword']) && !empty($_POST['terms']) && !empty($_POST['faculty']) && !empty($_POST['major']) && !empty($_POST['year'])){
+  register();
+}
+
+?>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -78,33 +85,50 @@
       </div>
     </div>
   </div>
+
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-4">
-        <h1 class="h3 mb-0">Rejestracja</h1>
-        <form class="mt-4">
+        <h1 class="h3">Rejestracja</h1>
+        <form class="mt-4" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
           <div class="mb-3">
-            <label for="firstName" class="form-label">Imię</label>
-            <input type="text" class="form-control" id="firstName" required>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Imię" required>
           </div>
           <div class="mb-3">
-            <label for="lastName" class="form-label">Nazwisko</label>
-            <input type="text" class="form-control" id="lastName" required>
+            <input type="text" class="form-control" id="surname" name="surname" placeholder="Nazwisko" required>
           </div>
           <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
           </div>
           <div class="mb-3">
-            <label for="password" class="form-label">Hasło</label>
-            <input type="password" class="form-control" id="password" required>
+            <input class="form-control" list="faculties" id="faculty" name="faculty" placeholder="Wydział" required>
+            <datalist id="faculties">
+              <?php faculties(); ?>
+            </datalist>
           </div>
           <div class="mb-3">
-            <label for="confirmPassword" class="form-label">Potwierdź hasło</label>
-            <input type="password" class="form-control" id="confirmPassword" required>
+            <input class="form-control" list="majors" id="major" name="major" placeholder="Kierunek" required>
+            <datalist id="majors">
+              <?php majors(); ?>
+            </datalist>
+          </div>
+          <div class="mb-3">
+            <input class="form-control" list="years" id="year" name="year" placeholder="Rok studiów" required>
+            <datalist id="years">
+              <option value="1">
+              <option value="2">
+              <option value="3">
+            </datalist>
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Hasło" required>
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+              placeholder="Potwierdź hasło" required>
           </div>
           <div class="form-check mb-3">
-            <input type="checkbox" class="form-check-input" id="terms" required>
+            <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
             <label class="form-check-label" for="terms">Zgadzam się z <a href="regulations.php">warunkami
                 użytkowania</a></label>
           </div>
