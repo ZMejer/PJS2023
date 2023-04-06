@@ -14,8 +14,8 @@ function register()
     $name = $_POST['name'];
     $surname = $_POST['surname'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirmPassword'];
+    $password = hash('sha256', $_POST['password']);
+    $confirmPassword = hash('sha256', $_POST['confirmPassword']);
     $faculty = $_POST['faculty'];
     $major = $_POST['major'];
     $year = $_POST['year'];
@@ -28,17 +28,41 @@ function register()
     if ($password != $confirmPassword) {
         echo "Hasła nie są takie same!";
         return;
-    } else {
-            $query = "SELECT fields_of_study.faculty_id, faculties.id FROM fields_of_study, faculties WHERE fields_of_study.faculty_id = faculties.id AND fields_of_study.name = '$major' AND faculties.name = '$faculty'";
-            $result = mysqli_query($conn, $query);
-            if (mysqli_num_rows($result) <= 0) {
-                echo "Nie ma takiego kierunku na tym wydziale!";
-                return;
-            }
+    }
+    if($year != 1 && $year != 2 && $year != 3) {
+        echo "Niepoprawny rok studiów!";
+        return;
+    }
+    else {
+        $query = "SELECT fields_of_study.faculty_id, faculties.id FROM fields_of_study, faculties WHERE fields_of_study.faculty_id = faculties.id AND fields_of_study.name = '$major' AND faculties.name = '$faculty'";
+        $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) <= 0) {
+            echo "Nie ma takiego kierunku na tym wydziale!";
+            return;
+        }
+
+        $query = "SELECT login FROM users WHERE email = '$email'";
+        $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) > 0) {
+            echo "Użytkownik o takim adresie email już istnieje!";
+            return;
+        }
+        
         $login = mb_substr($name, 0, 1) . $surname;
+        $query = "SELECT login FROM users WHERE login = '$login'";
+        $result = mysqli_query($conn, $query);
+        $num = 1;
+        while (mysqli_num_rows($result) > 0) {
+            $loginTmp = $login . $num;
+            $query = "SELECT login FROM users WHERE login = '$loginTmp'";
+            $result = mysqli_query($conn, $query);
+            $num++;
+        }
+        $login = $loginTmp;
+
         $sql = "INSERT INTO users VALUES ('', '$name', '$surname', '$login', '$password', '$email', '$faculty', '$major', '$semester')";
         if (mysqli_query($conn, $sql)) {
-            echo "Nowy rekord dodany poprawnie";
+            echo "Udało się zarejestrować. Twój login to " . $login;
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }

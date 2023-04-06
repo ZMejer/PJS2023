@@ -8,6 +8,7 @@
     <title>Asystent zapisów</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.png">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -98,7 +99,9 @@
     </div>
     <footer class="footer fixed-bottom p-3 bg-dark">
         <div class="container">
-            <span class="text-muted pull-right">Asystent zapisów &copy; 2023</span>
+            <span class="text-muted pull-right">Asystent zapisów &copy; 2023</span><br>
+            <span class="text-muted">Book icons created by<a href="https://www.flaticon.com/free-icons/book" title="book icons"> Freepik - Flaticon</a></span>
+
         </div>
     </footer>
     <script src="./scripts/schedule.js"></script>
