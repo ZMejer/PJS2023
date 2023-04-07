@@ -52,6 +52,7 @@ function register()
         $query = "SELECT login FROM users WHERE login = '$login'";
         $result = mysqli_query($conn, $query);
         $num = 1;
+        $loginTmp = $login;
         while (mysqli_num_rows($result) > 0) {
             $loginTmp = $login . $num;
             $query = "SELECT login FROM users WHERE login = '$loginTmp'";

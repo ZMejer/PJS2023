@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="icon" type="image/x-icon" href="./assets/favicon.png">
 </head>
+<?php
+include '../php_functions/session.php';
+?>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,8 +39,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">Zaloguj
-              się</button>
+            <?php button(); ?>
           </li>
         </ul>
       </div>
@@ -54,14 +56,15 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form method="POST" action="../php_functions/login_function.php">
             <div class="form-group">
-              <label for="inputEmail">Login:</label>
-              <input type="email" class="form-control" id="inputEmail" placeholder="Wpisz login">
+              <label for="login">Login:</label>
+              <input type="text" class="form-control" id="login" name="login" placeholder="Wpisz login">
             </div>
             <div class="form-group">
-              <label for="inputPassword">Hasło:</label>
-              <input type="password" class="form-control" id="inputPassword" placeholder="Wpisz hasło">
+              <label for="loginPassword">Hasło:</label>
+              <input type="password" class="form-control" id="loginPassword" name="loginPassword"
+                placeholder="Wpisz hasło">
             </div>
             <div class="form-check">
               <input type="checkbox" class="form-check-input" id="rememberMe">
@@ -71,11 +74,12 @@
               Nie posiadasz konta? <a href="signup.php">Zarejestruj się.</a>
             </div>
 
-          </form>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-dark" data-dismiss="modal">Anuluj</button>
-          <button type="button" class="btn btn-success">Zaloguj się</button>
+          <button type="submit" class="btn btn-success">Zaloguj się</button>
+          </form>
         </div>
       </div>
     </div>
@@ -83,7 +87,8 @@
   <footer class="footer fixed-bottom p-3 bg-dark">
     <div class="container">
       <span class="text-muted pull-right">Asystent zapisów &copy; 2023</span><br>
-      <span class="text-muted">Book icons created by<a href="https://www.flaticon.com/free-icons/book" title="book icons"> Freepik - Flaticon</a></span>
+      <span class="text-muted">Book icons created by<a href="https://www.flaticon.com/free-icons/book"
+          title="book icons"> Freepik - Flaticon</a></span>
     </div>
   </footer>
 

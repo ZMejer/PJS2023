@@ -17,9 +17,12 @@ function login()
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) > 0) {
-        echo "Udało się zalogować " . $row['login'] . " ";
+        session_start();
+        $_SESSION['id'] = $row['id'];
+        $_SESSION['login'] = $row['login'];
+        header("Location: ../gui/index.php");
     } else {
-        echo "Niepoprawny login lub hasło!";
+        echo "<script>alert('Niepoprawny login lub hasło!')</script>";
     }
 }
 

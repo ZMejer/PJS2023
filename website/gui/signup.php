@@ -10,13 +10,13 @@
   <link rel="stylesheet" href="./css/style.css">
   <link rel="icon" type="image/x-icon" href="./assets/favicon.png">
 </head>
+
 <?php
 include '../php_functions/signup_function.php';
-
+include '../php_functions/session.php';
 if (!empty($_POST['surname']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['confirmPassword']) && !empty($_POST['terms']) && !empty($_POST['faculty']) && !empty($_POST['major']) && !empty($_POST['year'])) {
   register();
 }
-
 ?>
 
 <body>
@@ -44,8 +44,7 @@ if (!empty($_POST['surname']) && !empty($_POST['email']) && !empty($_POST['passw
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">Zaloguj
-              się</button>
+            <?php button(); ?>
           </li>
         </ul>
       </div>
@@ -145,7 +144,8 @@ if (!empty($_POST['surname']) && !empty($_POST['email']) && !empty($_POST['passw
   <footer class="footer fixed-bottom p-3 bg-dark">
     <div class="container">
       <span class="text-muted pull-right">Asystent zapisów &copy; 2023</span><br>
-      <span class="text-muted">Book icons created by<a href="https://www.flaticon.com/free-icons/book" title="book icons"> Freepik - Flaticon</a></span>
+      <span class="text-muted">Book icons created by<a href="https://www.flaticon.com/free-icons/book"
+          title="book icons"> Freepik - Flaticon</a></span>
 
     </div>
   </footer>
