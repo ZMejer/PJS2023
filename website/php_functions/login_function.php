@@ -1,16 +1,8 @@
 <?php
-function connect()
-{
-    $conn = mysqli_connect("localhost", "root", "", "timetables");
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    } else {
-        return $conn;
-    }
-}
+include 'connection.php';
 function login()
 {
-    $conn = connect();
+    $conn = connection();
     $login = $_POST['login'];
     $password = hash('sha256', $_POST['loginPassword']);
     $sql = "SELECT * FROM users WHERE login = '$login' AND password = '$password'";
