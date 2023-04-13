@@ -12,7 +12,10 @@ function login()
         session_start();
         $_SESSION['id'] = $row['id'];
         $_SESSION['login'] = $row['login'];
-        header("Location: ../gui/index.php");
+        $_SESSION['semester'] = $row['semester'];
+        $_SESSION['major'] = $row['major'];
+        $url = $_SERVER['HTTP_REFERER'];
+        header("Location: $url");
     } else {
         echo "<script>alert('Niepoprawny login lub hasło!')</script>";
     }

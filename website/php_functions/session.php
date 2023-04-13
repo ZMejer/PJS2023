@@ -1,15 +1,36 @@
 <?php
 session_start();
   if(isset($_SESSION['id'])){
-    echo "Jesteś zalogowany jako " . $_SESSION['login'];
     function button(){
       echo '<a href="../php_functions/logout_function.php" class="btn btn-outline-light">Wyloguj</a>';
     }
-  }else{
-    echo "Nie jesteś zalogowany";
+
+    function schedules(){
+      include 'schedule_function.php';
+      schedule();
+    }
+
+    function introduction(){
+      echo "<h2 style=\"text-align:center;\">Witaj w Asystencie Zapisów</h2>";
+      echo "<h4 style=\"text-align:center;\">Jesteś zalogowany/a jako " . $_SESSION['login'] . "</h4>";
+    }
+  }
+  else{
     function button(){
       echo '<button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">Zaloguj
       się</button>';
+    }
+
+    function schedules(){
+      echo "<h2 style=\"text-align:center;\">Zaloguj się, aby zobaczyć plan zajęć</h2>";
+    }
+
+    function introduction(){
+      echo "<h2 style=\"text-align:center;\">Witaj w Asystencie Zapisów</h2>";
+      echo "<h4 style=\"text-align:center;\">Dołącz już teraz i ułóż swój plan na przyszły semestr</h4><br>";
+      echo "<div style=\"text-align:center;\"><button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#loginModal\">Zaloguj się</button>";
+      echo "<a type=\"button\" class=\"btn btn-warning ml-3\" href=\"signup.php\">Stwórz konto</a></div>";
+
     }
   }
 ?>

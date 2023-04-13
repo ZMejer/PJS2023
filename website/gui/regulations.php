@@ -15,7 +15,7 @@ include '../php_functions/session.php';
 ?>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
     <div class="container-fluid">
       <a class="navbar-brand d-flex" href="index.php">Asystent zapisów</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -45,7 +45,7 @@ include '../php_functions/session.php';
       </div>
     </div>
   </nav>
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+  <div class="modal fade" id="loginModal" role="dialog" aria-labelledby="loginModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -73,8 +73,6 @@ include '../php_functions/session.php';
             <div class="form-group">
               Nie posiadasz konta? <a href="signup.php">Zarejestruj się.</a>
             </div>
-
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-dark" data-dismiss="modal">Anuluj</button>
@@ -84,6 +82,12 @@ include '../php_functions/session.php';
       </div>
     </div>
   </div>
+  <div class="container">
+  <h2 style="text-align:center;">Regulamin</h2>
+  <div id="rulesInput">
+    
+</div>
+</div>
   <footer class="footer fixed-bottom p-3 bg-dark">
     <div class="container">
       <span class="text-muted pull-right">Asystent zapisów &copy; 2023</span><br>
@@ -91,7 +95,7 @@ include '../php_functions/session.php';
           title="book icons"> Freepik - Flaticon</a></span>
     </div>
   </footer>
-
+  <script src="./scripts/regulations.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

@@ -15,7 +15,7 @@ include '../php_functions/session.php';
 ?>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
     <div class="container-fluid">
       <a class="navbar-brand d-flex" href="index.php">Asystent zapisów</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -45,8 +45,7 @@ include '../php_functions/session.php';
       </div>
     </div>
   </nav>
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="loginModal" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -81,6 +80,9 @@ include '../php_functions/session.php';
         </div>
       </div>
     </div>
+  </div>
+  <div class="container">
+    <?php introduction(); ?>
   </div>
   <footer class="footer fixed-bottom p-3 bg-dark">
     <div class="container">

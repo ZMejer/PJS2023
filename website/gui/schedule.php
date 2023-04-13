@@ -46,22 +46,9 @@ include '../php_functions/session.php';
         </div>
     </nav>
     <div class="container" style="margin-top:8em; margin-bottom:8em;">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th class="col-md-2">Poniedziałek</th>
-                    <th class="col-md-2">Wtorek</th>
-                    <th class="col-md-2">Środa</th>
-                    <th class="col-md-2">Czwartek</th>
-                    <th class="col-md-2">Piątek</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-            </tbody>
-        </table>
+                <?php schedules(); ?>
     </div>
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+    <div class="modal fade" id="loginModal" role="dialog" aria-labelledby="loginModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
