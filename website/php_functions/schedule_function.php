@@ -23,7 +23,7 @@ function schedule()
         }
     }
 
-    echo "<table class=\"table table-bordered\">
+    echo "<form><table class=\"table table-bordered\">
     <thead>
         <tr>
             <th></th>
@@ -75,7 +75,8 @@ function schedule()
                     break;
             }
             if ($cell_content) {
-                echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name\" style='text-align:center;'>$cell_content</td>";
+                echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name\" style='text-align:center;'>$cell_content
+                <label><input type='checkbox' name='subjects[]' value='" . $conflicts[0]['subject'] . "'></label></td>";
             } else {
                 echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\"></td>";
             }
@@ -101,9 +102,10 @@ function schedule()
                             break;
                     }
                     if ($cell_content) {
-                        echo "<td rowspan=\"$rowspan\" colspan=\"$colspan\" class=\"$class_name\" style='text-align:center;'>$cell_content</td>";
+                        echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name\" style='text-align:center;'>$cell_content
+                        <label><input type='checkbox' name='subjects[]' value='" . $conflicts[0]['subject'] . "'></label></td>";
                     } else {
-                        echo "<td rowspan=\"$rowspan\" colspan=\"$colspan\"></td>";
+                        //echo "<td rowspan=\"$rowspan\" colspan=\"$colspan\"></td>";
                     }
                 }
                 $cell_added = true;
@@ -118,6 +120,9 @@ function schedule()
         echo "</tr>";
     }
     echo "</tbody>
-    </table>";
+    </table></form>
+    <div class='d-grid gap-2 d-md-flex justify-content-md-end'>
+  <button class='btn btn-success me-md-2 col-2' type='button'>Zapisz</button>
+    </div>";
 }
 ?>
