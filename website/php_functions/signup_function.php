@@ -1,13 +1,21 @@
 <?php
 include 'connection.php';
+
+function getSalt(){
+    $salt = "";
+    for($i = 0; $i < 32; $i++){
+        $salt .= chr(rand(33, 126));
+    }
+    return $salt;
+}
 function register()
 {
     $conn = connection();
     $name = $_POST['name'];
     $surname = $_POST['surname'];
     $email = $_POST['email'];
-    $password = hash('sha256', $_POST['password']);
-    $confirmPassword = hash('sha256', $_POST['confirmPassword']);
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
     $faculty = $_POST['faculty'];
     $major = $_POST['major'];
     $year = $_POST['year'];
@@ -52,8 +60,9 @@ function register()
             $num++;
         }
         $login = $loginTmp;
-
-        $sql = "INSERT INTO users VALUES ('', '$name', '$surname', '$login', '$password', '$email', '$faculty', '$major', '$semester')";
+        $salt = getSalt();
+        $password = hash('sha256', $password . $salt);
+        $sql = "INSERT INTO users VALUES ('', '$name', '$surname', '$login', '$salt', '$password', '$email', '$faculty', '$major', '$semester')";
         if (mysqli_query($conn, $sql)) {
             echo "Udało się zarejestrować. Twój login to " . $login;
         } else {

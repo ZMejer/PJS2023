@@ -4,7 +4,8 @@ function login()
 {
     $conn = connection();
     $login = $_POST['login'];
-    $password = hash('sha256', $_POST['loginPassword']);
+    $salt = "SELECT salt FROM users WHERE login = '$login'";
+    $password = hash('sha256', $_POST['loginPassword'] . mysqli_fetch_assoc(mysqli_query($conn, $salt))['salt']);
     $sql = "SELECT * FROM users WHERE login = '$login' AND password = '$password'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);

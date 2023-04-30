@@ -13,7 +13,7 @@ function schedule()
     $row = mysqli_fetch_assoc($result);
     $field_of_study_id = $row['id'];
 
-    $query = "SELECT subject, day, beginning_time, end_time, type FROM schedules WHERE field_of_study_id = '$field_of_study_id' AND semester = '$semester'";
+    $query = "SELECT id, subject, day, beginning_time, end_time, lecturer, type FROM schedules WHERE field_of_study_id = '$field_of_study_id' AND semester = '$semester'";
     $result = mysqli_query($conn, $query);
 
     $hours = array();
@@ -46,7 +46,7 @@ function schedule()
             $cell_added = false;
             $conflicts = array();
             while ($schedule = mysqli_fetch_assoc($result)) {
-                if (intval($schedule['day']) == $d && strtotime($schedule['beginning_time']) == strtotime($hour)) {
+                if (intval($schedule['day']) == $d && strtotime($schedule['beginning_time']) == strtotime($hour)) { //zrobic zeby sprawdzalo czy godzina jest w przedziale
                     $end_time = $schedule['end_time'];
                     $conflicts[] = $schedule;
                 }
@@ -120,9 +120,10 @@ function schedule()
         echo "</tr>";
     }
     echo "</tbody>
-    </table></form>
+    </table>
     <div class='d-grid gap-2 d-md-flex justify-content-md-end'>
-  <button class='btn btn-success me-md-2 col-2' type='button'>Zapisz</button>
-    </div>";
+        <button class='btn btn-success me-md-2 col-2' type='submit'>Zapisz</button> 
+    </div></form>"; //zrobic zeby przycisk poruszal sie wraz z tabela
+
 }
 ?>
