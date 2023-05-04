@@ -6,8 +6,20 @@ session_start();
     }
 
     function schedules(){
-      include 'schedule_function.php';
-      schedule();
+      $conn = mysqli_connect("localhost", "root", "", "timetables") or die ("Connection failed: " . mysqli_connect_error());
+      $id = $_SESSION['id'];
+      $sql = "SELECT * FROM users_schedules WHERE user_id = $id";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_assoc($result);
+      if(mysqli_num_rows($result) > 0){
+        include 'users_schedule.php';
+        users_schedule();
+      }
+      else {
+        include 'schedule_function.php';
+        schedule();
+      }
+      
     }
 
     function introduction(){

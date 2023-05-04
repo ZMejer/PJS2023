@@ -23,7 +23,7 @@ function schedule()
         }
     }
 
-    echo "<form><table class=\"table table-bordered\">
+    echo "<form method=\"POST\" action=\"../php_functions/submit_schedule.php\"><table class=\"table table-bordered\">
     <thead>
         <tr>
             <th></th>
@@ -76,7 +76,7 @@ function schedule()
             }
             if ($cell_content) {
                 echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name\" style='text-align:center;'>$cell_content
-                <label><input type='checkbox' name='subjects[]' value='" . $conflicts[0]['subject'] . "'></label></td>";
+                <label><input type='checkbox' name='subjects[]' value='" . $conflicts[0]['id'] . "'></label></td>";
             } else {
                 echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\"></td>";
             }
@@ -103,7 +103,7 @@ function schedule()
                     }
                     if ($cell_content) {
                         echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name\" style='text-align:center;'>$cell_content
-                        <label><input type='checkbox' name='subjects[]' value='" . $conflicts[0]['subject'] . "'></label></td>";
+                        <label><input type='checkbox' name='subjects[]' value='" . $conflicts[$i]['id'] . "'></label></td>";
                     } else {
                         //echo "<td rowspan=\"$rowspan\" colspan=\"$colspan\"></td>";
                     }
