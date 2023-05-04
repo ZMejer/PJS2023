@@ -121,9 +121,9 @@ function schedule()
     }
     echo "</tbody>
     </table>
-    <div class='d-grid gap-2 d-md-flex justify-content-md-end'>
-        <button class='btn btn-success me-md-2 col-2' type='submit'>Zapisz</button> 
-    </div></form>"; //zrobic zeby przycisk poruszal sie wraz z tabela
+    <div style=\"position: fixed !important; bottom: 10%; right: 10%;\">
+        <button class=\"btn btn-success\" type=\"submit\" style=\"width: 300%;\">Zapisz</button>
+    </div></form>";
 
 }
 ?>

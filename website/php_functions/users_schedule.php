@@ -20,7 +20,7 @@ function users_schedule()
         }
     }
 
-    echo "<table class=\"table table-bordered\">
+    echo "<form method='POST' action='../php_functions/reset_schedule.php'><table class=\"table table-bordered\">
     <thead>
         <tr>
             <th></th>
@@ -71,7 +71,10 @@ function users_schedule()
         }
         echo "</tr>";
     }
-    echo "</tbody></table>";
+    echo "</tbody></table>
+    <div style=\"position: fixed !important; bottom: 10%; right: 10%;\">
+        <button class=\"btn btn-outline-dark\" type=\"submit\" style=\"width: 300%;\">Reset</button>
+    </div></form>";
 
 }
 
