@@ -34,7 +34,7 @@ include '../php_functions/session.php';
             <a class="nav-link" href="schedule.php">Plan zajęć</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="regulations.php">Regulamin</a>
+            <a class="nav-link active" href="timetable.php">Terminarz</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -45,8 +45,7 @@ include '../php_functions/session.php';
       </div>
     </div>
   </nav>
-  <div class="modal fade" id="loginModal" role="dialog" aria-labelledby="loginModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="loginModal" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -82,12 +81,9 @@ include '../php_functions/session.php';
       </div>
     </div>
   </div>
-  <div class="container">
-  <h2 style="text-align:center;">Regulamin</h2>
-  <div id="rulesInput">
-    
-</div>
-</div>
+  <?php timetables(); ?>
+  </div>
+  </div>
   <footer class="footer fixed-bottom p-3 bg-dark">
     <div class="container">
       <span class="text-muted pull-right">Asystent zapisów &copy; 2023</span><br>

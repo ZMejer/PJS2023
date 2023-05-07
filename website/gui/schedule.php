@@ -34,7 +34,7 @@ include '../php_functions/session.php';
                         <a class="nav-link active" href="schedule.php">Plan zajęć</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="regulations.php">Regulamin</a>
+                        <a class="nav-link" href="timetable.php">Terminarz</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">

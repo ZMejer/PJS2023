@@ -39,7 +39,7 @@ if (!empty($_POST['surname']) && !empty($_POST['email']) && !empty($_POST['passw
             <a class="nav-link" href="schedule.php">Plan zajęć</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="regulations.php">Regulamin</a>
+            <a class="nav-link" href="timetable.php">Terminarz</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">

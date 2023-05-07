@@ -26,6 +26,10 @@ session_start();
       echo "<h2 style=\"text-align:center;\">Witaj w Asystencie Zapisów</h2>";
       echo "<h4 style=\"text-align:center;\">Jesteś zalogowany/a jako " . $_SESSION['login'] . "</h4>";
     }
+    function timetables(){
+      include 'timetable_function.php';
+      timetable();
+    }
   }
   else{
     function button(){
@@ -43,6 +47,9 @@ session_start();
       echo "<div style=\"text-align:center;\"><button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#loginModal\">Zaloguj się</button>";
       echo "<a type=\"button\" class=\"btn btn-warning ml-3\" href=\"signup.php\">Stwórz konto</a></div>";
 
+    }
+    function timetables(){
+      echo "<h2 style=\"text-align:center;\">Zaloguj się, aby zobaczyć terminarz</h2>";
     }
   }
 ?>
