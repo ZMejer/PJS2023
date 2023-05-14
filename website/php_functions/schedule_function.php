@@ -75,7 +75,7 @@ function schedule()
                     break;
             }
             if ($cell_content) {
-                echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name\" style='text-align:center;'>$cell_content
+                echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name change-color\" style='text-align:center;'>$cell_content
                 <label><input type='checkbox' name='subjects[]' value='" . $conflicts[0]['id'] . "'></label></td>";
             } else {
                 echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\"></td>";
@@ -102,7 +102,7 @@ function schedule()
                             break;
                     }
                     if ($cell_content) {
-                        echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name\" style='text-align:center;'>$cell_content
+                        echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name change-color\" style='text-align:center;'>$cell_content
                         <label><input type='checkbox' name='subjects[]' value='" . $conflicts[$i]['id'] . "'></label></td>";
                     } else {
                         //echo "<td rowspan=\"$rowspan\" colspan=\"$colspan\"></td>";

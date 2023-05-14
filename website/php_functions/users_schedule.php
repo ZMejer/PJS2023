@@ -54,19 +54,19 @@ function users_schedule()
             }
             switch ($cell_type) {
                 case 'seminar':
-                    $class_name = 'table-warning';
+                    $class_name = 'bg-warning';
                     break;
                 case 'labolatories':
-                    $class_name = 'table-success';
+                    $class_name = 'bg-success';
                     break;
                 case 'lecture':
-                    $class_name = 'table-primary';
+                    $class_name = 'bg-primary';
                     break;
                 default:
                     $class_name = '';
                     break;
             }
-            echo "<td class=\"$class_name\"" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . ">$cell_content</td>";
+            echo "<td style='text-align:center;' class=\"$class_name\"" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . ">$cell_content</td>";
             mysqli_data_seek($result, 0);
         }
         echo "</tr>";
