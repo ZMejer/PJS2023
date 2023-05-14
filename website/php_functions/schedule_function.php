@@ -63,20 +63,25 @@ function schedule()
             switch ($cell_type) {
                 case 'seminar':
                     $class_name = 'table-warning';
+                    $type = 'konwersatoria';
                     break;
                 case 'labolatories':
                     $class_name = 'table-success';
+                    $type = 'laboratoria';
                     break;
                 case 'lecture':
                     $class_name = 'table-primary';
+                    $type = 'wykład';
                     break;
                 default:
                     $class_name = '';
                     break;
             }
             if ($cell_content) {
-                echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name change-color\" style='text-align:center;'>$cell_content
-                <label><input type='checkbox' name='subjects[]' value='" . $conflicts[0]['id'] . "'></label></td>";
+                $end_hour = date('H:i', strtotime($conflicts[0]['end_time']));
+                $subject_info = 'Rodzaj zajęć: ' . $type . '<br> Prowadzący: ' . $conflicts[0]['lecturer'] . '<br> Godzina rozpoczęcia: ' . $hour . '<br> Godzina zakończenia: ' . $end_hour;
+                echo "<td data-toggle='popover' data-content='". $subject_info ."' data-html='true' data-title='". $conflicts[0]['subject'] ."'" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name change-color\" style='text-align:center;'>$cell_content
+                <label><input type='checkbox' style='display:none;' name='subjects[]' value='" . $conflicts[0]['id'] . "'></label></td>";
             } else {
                 echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\"></td>";
             }
@@ -102,8 +107,10 @@ function schedule()
                             break;
                     }
                     if ($cell_content) {
-                        echo "<td" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name change-color\" style='text-align:center;'>$cell_content
-                        <label><input type='checkbox' name='subjects[]' value='" . $conflicts[$i]['id'] . "'></label></td>";
+                        $end_hour = date('H:i', strtotime($conflicts[$i]['end_time']));
+                        $subject_info = 'Rodzaj zajęć: ' . $type . '<br> Prowadzący: ' . $conflicts[$i]['lecturer'] . '<br> Godzina rozpoczęcia: ' . $hour . '<br> Godzina zakończenia: ' . $end_hour;
+                        echo "<td data-toggle='popover' data-content='". $subject_info ."' data-html='true' data-title='". $conflicts[0]['subject'] ."'" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name change-color\" style='text-align:center;'>$cell_content
+                        <label><input type='checkbox' style='display:none;' name='subjects[]' value='" . $conflicts[$i]['id'] . "'></label></td>";
                     } else {
                         //echo "<td rowspan=\"$rowspan\" colspan=\"$colspan\"></td>";
                     }

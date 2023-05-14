@@ -1,7 +1,14 @@
 $(document).ready(function() {
-    $('input[type=checkbox]').on('change', function() {
-        var isChecked = $(this).is(':checked');
-        var cell = $(this).closest('td');
+    $('td.change-color').on('click', function() {
+        var checkbox = $(this).find('input[type=checkbox]');
+        if (checkbox.prop('checked')) {
+            checkbox.prop('checked', false);
+        } else {
+            checkbox.prop('checked', true);
+        }
+        
+        var isChecked = checkbox.is(':checked');
+        var cell = $(this);
         if (isChecked) {
             if (cell.hasClass('table-primary')) {
                 cell.removeClass('table-primary').addClass('bg-primary');
@@ -21,3 +28,10 @@ $(document).ready(function() {
         }
     });
 });
+
+$(function () {
+    $('[data-toggle="popover"]').popover({
+      trigger: 'hover',
+      delay: { "show": 500, "hide": 0 }
+    })
+})
