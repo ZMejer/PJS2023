@@ -30,12 +30,7 @@ include '../php_functions/session.php';
           <li class="nav-item">
             <a class="nav-link" href="signup.php">Rejestracja</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="schedule.php">Plan zajęć</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="timetable.php">Terminarz</a>
-          </li>
+          <?php navbar(); ?>
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">

@@ -1,6 +1,15 @@
 <?php
 session_start();
   if(isset($_SESSION['id'])){
+
+    function navbar(){
+      echo "<li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"schedule.php\">Plan zajęć</a>
+      </li>
+      <li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"timetable.php\">Terminarz</a>
+      </li>";
+    }
     function button(){
       echo '<a href="../php_functions/logout_function.php" class="btn btn-outline-light">Wyloguj</a>';
     }
@@ -32,6 +41,9 @@ session_start();
     }
   }
   else{
+    function navbar(){
+      echo '';
+    }
     function button(){
       echo '<button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">Zaloguj
       się</button>';
