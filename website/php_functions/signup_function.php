@@ -3,8 +3,11 @@ include 'connection.php';
 
 function getSalt(){
     $salt = "";
-    for($i = 0; $i < 32; $i++){
-        $salt .= chr(rand(33, 126));
+    while(strlen($salt) < 33){
+        $char = chr(rand(33,126));
+        if($char != "'" && $char != '"' && $char != "\\" && $char != "/" && $char != "`"){
+            $salt .= $char;
+        }
     }
     return $salt;
 }
