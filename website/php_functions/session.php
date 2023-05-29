@@ -33,7 +33,9 @@ session_start();
 
     function introduction(){
       echo "<h2 style=\"text-align:center;\">Witaj w Asystencie Zapisów</h2>";
-      echo "<h4 style=\"text-align:center;\">Jesteś zalogowany/a jako " . $_SESSION['login'] . "</h4>";
+      echo "<h4 style=\"text-align:center;\">Jesteś zalogowany/a jako " . $_SESSION['login'] . "</h4><br>";
+      echo "<div style=\"text-align:center;\"><a style=\"color:white;\" type=\"button\" href=\"schedule.php\" class=\"btn btn-success\">Plan zajęć</a>";
+      echo "<a type=\"button\" class=\"btn btn-warning ml-3\" href=\"timetable.php\">Terminarz</a></div>";
     }
     function timetables(){
       include 'timetable_function.php';
