@@ -29,7 +29,6 @@ function users_schedule()
     echo "</tbody>";
     echo "</table>";
     $days = array('Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek');
-
     for ($d = 1; $d <= 5; $d++) {
         echo "<table class=\"table table-bordered col-md-2\" style='float:left;'>";
         $i = $d - 1;
@@ -41,13 +40,12 @@ function users_schedule()
             $cell_content = '';
             $subject_info = '';
             $type = '';
-            $q = "SELECT subject, day, beginning_time, end_time, lecturer, type FROM schedules WHERE day = '$d' AND beginning_time = '$hour'";
+            $q = "SELECT subject, day, beginning_time, end_time, lecturer, type FROM schedules WHERE day = '$d' AND beginning_time = '$hour' AND id IN (SELECT subject_id FROM users_schedules WHERE user_id = '$user_id')";
             $r = mysqli_query($conn, $q);
             $schedule = mysqli_fetch_assoc($r);
             if (mysqli_num_rows($r) > 0) {
                 $cell_content = $schedule['subject'];
                 $cell_type = $schedule['type'];
-                $subject_info = '<br> Prowadzący: ' . $schedule['lecturer'] . '<br> Godzina rozpoczęcia: ' . $hour . '<br> Godzina zakończenia: ' . $schedule['end_time'];
                 $rowspan = ceil((strtotime($schedule['end_time']) - strtotime($hour)) / 900);
                 $rowspan_count = $rowspan;
                 switch ($cell_type) {
@@ -68,6 +66,27 @@ function users_schedule()
                         $type = '';
                         break;
                 }
+                switch (intval($schedule['day'])) {
+                    case 1:
+                        $day = 'poniedziałek';
+                        break;
+                    case 2:
+                        $day = 'wtorek';
+                        break;
+                    case 3:
+                        $day = 'środa';
+                        break;
+                    case 4:
+                        $day = 'czwartek';
+                        break;
+                    case 5:
+                        $day = 'piątek';
+                        break;
+                    default:
+                        $day = '';
+                        break;
+                }    
+                $subject_info = '<br> Prowadzący: ' . $schedule['lecturer'] . '<br> Godzina rozpoczęcia: ' . $hour . '<br> Dzień: '. $day .'<br> Godzina zakończenia: ' . $schedule['end_time'];
                 echo "<tr><td data-toggle='popover' data-content='" . $type . $subject_info . "' data-html='true' data-title='" . $cell_content . "' style='text-align:center;' class=\"$class_name\"" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . ">$cell_content</td></tr>";
             } else {
                     echo "<tr><td> </td></tr>";
@@ -102,6 +121,26 @@ function users_schedule()
                 $q = "SELECT subject, day, beginning_time, end_time, lecturer, type FROM schedules WHERE id = '$schedule[subject_id]'";
                 $r = mysqli_query($conn, $q);
                 $s = mysqli_fetch_assoc($r);
+                switch (intval($s['day'])) {
+                    case 1:
+                        $day = 'poniedziałek';
+                        break;
+                    case 2:
+                        $day = 'wtorek';
+                        break;
+                    case 3:
+                        $day = 'środa';
+                        break;
+                    case 4:
+                        $day = 'czwartek';
+                        break;
+                    case 5:
+                        $day = 'piątek';
+                        break;
+                    default:
+                        $day = '';
+                        break;
+                }    
                 if (intval($s['day']) == $d && strtotime($s['beginning_time']) == strtotime($hour)) {
                     $end_time = $s['end_time'];
                     $rowspan = ceil((strtotime($end_time) - strtotime($hour)) / 900);
@@ -109,7 +148,7 @@ function users_schedule()
                     $cell_type = $s['type'];
                     $end_hour = date('H:i', strtotime($s['end_time']));
 
-                    $subject_info = '<br> Prowadzący: ' . $s['lecturer'] . '<br> Godzina rozpoczęcia: ' . $hour . '<br> Godzina zakończenia: ' . $end_hour;
+                    $subject_info = '<br> Prowadzący: ' . $s['lecturer'] . '<br> Dzień: '. $day .'<br> Godzina rozpoczęcia: ' . $hour . '<br> Godzina zakończenia: ' . $end_hour;
                     break;
                 }
 
@@ -132,14 +171,13 @@ function users_schedule()
                     $type = '';
                     break;
             }
-
             echo "<td data-toggle='popover' data-content='" . $type . $subject_info . "' data-html='true' data-title='" . $cell_content . "' style='text-align:center;' class=\"$class_name\"" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . ">$cell_content</td>";
             mysqli_data_seek($result, 0);
         }
         echo "</tr>";
     }
-    echo "</tbody></table>
-    <div style=\"position: fixed !important; bottom: 10%; right: 10%;\">
+    echo "</tbody></table>";
+    echo "<div style=\"position: fixed !important; bottom: 10%; right: 10%;\">
         <button class=\"btn btn-outline-dark\" type=\"submit\" style=\"width: 300%;\">Reset</button>
     </div></form>";
 

@@ -46,7 +46,7 @@ function schedule()
             $cell_added = false;
             $conflicts = array();
             while ($schedule = mysqli_fetch_assoc($result)) {
-                if (intval($schedule['day']) == $d && strtotime($schedule['beginning_time']) == strtotime($hour)) { //zrobic zeby sprawdzalo czy godzina jest w przedziale
+                if (intval($schedule['day']) == $d && strtotime($schedule['beginning_time']) == strtotime($hour)) { 
                     $end_time = $schedule['end_time'];
                     $conflicts[] = $schedule;
                 }
@@ -77,9 +77,29 @@ function schedule()
                     $class_name = '';
                     break;
             }
+            switch ($d) {
+                case 1:
+                    $day = 'poniedziałek';
+                    break;
+                case 2:
+                    $day = 'wtorek';
+                    break;
+                case 3:
+                    $day = 'środa';
+                    break;
+                case 4:
+                    $day = 'czwartek';
+                    break;
+                case 5:
+                    $day = 'piątek';
+                    break;
+                default:
+                    $day = '';
+                    break;
+            }
             if ($cell_content) {
                 $end_hour = date('H:i', strtotime($conflicts[0]['end_time']));
-                $subject_info = 'Rodzaj zajęć: ' . $type . '<br> Prowadzący: ' . $conflicts[0]['lecturer'] . '<br> Godzina rozpoczęcia: ' . $hour . '<br> Godzina zakończenia: ' . $end_hour;
+                $subject_info = 'Rodzaj zajęć: ' . $type . '<br> Prowadzący: ' . $conflicts[0]['lecturer'] .'<br> Dzień: '. $day .'<br> Godzina rozpoczęcia: ' . $hour . '<br> Godzina zakończenia: ' . $end_hour;
                 echo "<td data-toggle='popover' data-content='". $subject_info ."' data-html='true' data-title='". $conflicts[0]['subject'] ."'" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name change-color\" style='text-align:center;'>$cell_content
                 <label><input type='checkbox' style='display:none;' name='subjects[]' value='" . $conflicts[0]['id'] . "'></label></td>";
             } else {
@@ -108,7 +128,7 @@ function schedule()
                     }
                     if ($cell_content) {
                         $end_hour = date('H:i', strtotime($conflicts[$i]['end_time']));
-                        $subject_info = 'Rodzaj zajęć: ' . $type . '<br> Prowadzący: ' . $conflicts[$i]['lecturer'] . '<br> Godzina rozpoczęcia: ' . $hour . '<br> Godzina zakończenia: ' . $end_hour;
+                        $subject_info = 'Rodzaj zajęć: ' . $type . '<br> Prowadzący: ' . $conflicts[$i]['lecturer'] .'<br> Dzień: '. $day .'<br> Godzina rozpoczęcia: ' . $hour . '<br> Godzina zakończenia: ' . $end_hour;
                         echo "<td data-toggle='popover' data-content='". $subject_info ."' data-html='true' data-title='". $conflicts[$i]['subject'] ."'" . ($rowspan > 1 ? " rowspan=\"$rowspan\"" : "") . " colspan=\"$colspan\" class=\"$class_name change-color\" style='text-align:center;'>$cell_content
                         <label><input type='checkbox' style='display:none;' name='subjects[]' value='" . $conflicts[$i]['id'] . "'></label></td>";
                     } else {
